@@ -1,21 +1,22 @@
 <template>
   <div id="app">
-    <Home/>
+    <Store/>
   </div>
 </template>
 
 <script>
-import Home from './components/Home.vue'
+import Store from './components/Store.vue'
 
 export default {
   name: 'App',
   components: {
-    Home
+    Store
   }
 }
 </script>
 
 <style>
+/* ========================== VARIABLES ========================== */
 :root {
   /* COLOR */
   --hover: yellow;
@@ -36,7 +37,7 @@ export default {
 
 /* ========================= BUILT IN TAGS ======================== */
 html, body { background-color: var(--accent); color: var(--text); font-family: var(--short); width: 100%; height: 100%; overflow: hidden; margin: 0; display: flex; flex-flow: column; -moz-user-select: none; -webkit-touch-callout: none; -webkit-user-select: none; -ms-user-select: none; user-select: none; -khtml-user-select: none; }
-header { background-color: var(--mainBG); width: 100%; height: 3em; margin: .125em; display: flex; flex-shrink: 0; align-items: center;}
+header { background-color: var(--mainBG); width: 100%; position: fixed; }
 nav { background-color: var(--mainBG); width: 9.4em; flex-shrink: 0; margin-left: .125em; }
 main { background-color: var(--mainBG); flex-grow: 1; position: relative; margin-left: 2px;  flex-flow: column; padding: .3em; }
 a:link, a:visited, a:active { text-decoration: none; color: var(--text); }
@@ -51,4 +52,5 @@ input:focus, textarea:focus { border: var(--hover) dotted 1px; }
 .red, .disabled, .warning, .saveFailed, .logError, .logRed { color: red; }
 .green, .saved, .logGreen { color: green; }
 .yellow, .active, .saving, .logYellow { color: yellow; }
+
 </style>

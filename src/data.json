@@ -1,0 +1,798 @@
+{
+  "AliceCore": {
+    "name": "AliceCore",
+    "icon": "fab fa-creative-commons-by",
+    "category": "alice",
+    "author": "ProjectAlice",
+    "maintainers": ["Psycho", "Jierka", "maxbachmann", "philipp2310"],
+    "desc": "AliceCore is the official skill that handles all core intents.",
+    "conditions": {
+      "lang": ["en", "fr", "de", "it"]
+    },
+    "downloads": 37,
+    "versionMapping": {
+      "1.0.0-b3": "1.2.16",
+      "1.0.0-b1": "1.2.8",
+      "1.0.0-a6": "1.0.62",
+      "1.0.0-a5": "1.0.51",
+      "1.0.0-a4": "1.0.35"
+    }
+  },
+  "BackUpAlice": {
+    "name": "BackUpAlice",
+    "icon": "fab fa-battle-net",
+    "category": "organisation",
+    "author": "Lazza",
+    "maintainers": [],
+    "desc": "Makes a backup copy of the ProjectAlice folder automatically. Please read the instructions for a outline on function",
+    "conditions": {
+      "lang": ["en"],
+      "online": true,
+      "asrArbitraryCapture": true
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-b3": "0.0.6"
+    }
+  },
+  "RedQueen": {
+    "name": "RedQueen",
+    "icon": "fas fa-biohazard",
+    "category": "alice",
+    "author": "ProjectAlice",
+    "maintainers": ["Psycho", "maxbachmann"],
+    "desc": "Red Queen is the official Project Alice personality skill",
+    "conditions": {
+      "lang": ["en", "fr", "de", "it"]
+    },
+    "downloads": 23,
+    "versionMapping": {
+      "1.0.0-b1": "1.0.25",
+      "1.0.0-a6": "1.0.24",
+      "1.0.0-a5": "1.0.20",
+      "1.0.0-a4": "1.0.15"
+    }
+  },
+  "Zigbee2Mqtt": {
+    "name": "Zigbee2Mqtt",
+    "icon": "far fa-signal-stream",
+    "category": "automation",
+    "author": "Psychokiller1888",
+    "maintainers": [],
+    "desc": "Have your zigbee devices communicate with alice directly over mqtt",
+    "script": "zigbee2mqtt.sh",
+    "conditions": {},
+    "downloads": 4,
+    "versionMapping": {
+      "1.0.0-b1": "1.1.2",
+      "1.0.0-a6": "1.0.1",
+      "1.0.0-a5": "0.1.2",
+      "1.0.0-a4": "0.0.16"
+    }
+  },
+  "LocalButtonPress": {
+    "name": "LocalButtonPress",
+    "icon": "fab fa-battle-net",
+    "category": "automation",
+    "author": "mjlill",
+    "maintainers": ["Psycho", "maxbachmann"],
+    "desc": "Press an imaginary button on or off",
+    "conditions": {
+      "lang": ["en"]
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-a4": "1.0.72"
+    }
+  },
+  "AqaraDoorAndWindowSensor": {
+    "name": "AqaraDoorAndWindowSensor",
+    "icon": "fab fa-battle-net",
+    "category": "undefined",
+    "author": "Psychokiller1888",
+    "maintainers": [],
+    "desc": "Connect your aqara door and window sensors to alice. requires zigbee2mqtt",
+    "conditions": {
+      "lang": ["en"],
+      "asrArbitraryCapture": true,
+      "skill": ["Zigbee2Mqtt"]
+    },
+    "downloads": 0,
+    "versionMapping": {}
+  },
+  "DateDayTimeYear": {
+    "name": "DateDayTimeYear",
+    "icon": "far fa-clock",
+    "category": "assistance",
+    "author": "Psychokiller1888",
+    "maintainers": ["maxbachmann", "SkyHyperV"],
+    "desc": "Ask for the time, date, day and year",
+    "conditions": {
+      "lang": ["en", "fr", "de", "it"]
+    },
+    "downloads": 13,
+    "versionMapping": {
+      "1.0.0-a6": "1.0.26",
+      "1.0.0-a4": "1.0.22"
+    }
+  },
+  "Telemetry": {
+    "name": "Telemetry",
+    "icon": "fas fa-database",
+    "category": "alice",
+    "author": "ProjectAlice",
+    "maintainers": ["Psychokiller1888", "maxbachmann"],
+    "desc": "Access your stored telemetry data",
+    "conditions": {
+      "lang": ["en", "de", "it"],
+      "activeManager": ["TelemetryManager"]
+    },
+    "downloads": 19,
+    "versionMapping": {
+      "1.0.0-a5": "1.2.2",
+      "1.0.0-a4": "1.0.7"
+    }
+  },
+  "Telegram": {
+    "name": "Telegram",
+    "icon": "fab fa-telegram",
+    "category": "automation",
+    "author": "Psycho",
+    "maintainers": [],
+    "desc": "Chat with Alice directly from your mobile device with the `privacy first` app Telegram",
+    "conditions": {
+      "lang": ["en", "fr", "de", "it"],
+      "online": true,
+      "asrArbitraryCapture": true
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-b3": "1.3.0"
+    }
+  },
+  "Vacuum": {
+    "name": "Vacuum",
+    "icon": "fas fa-broom",
+    "category": "undefined",
+    "author": "philipp2310",
+    "maintainers": [],
+    "desc": "Control your vacuum",
+    "conditions": {
+      "lang": ["en", "de"],
+      "asrArbitraryCapture": true
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-b3": "1.0.1"
+    }
+  },
+  "Speedtest": {
+    "name": "Speedtest",
+    "icon": "fab fa-battle-net",
+    "category": "information",
+    "author": "maxbachmann",
+    "maintainers": ["Psychokiller1888"],
+    "desc": "Run internet speed test",
+    "conditions": {
+      "lang": ["en", "de", "fr"],
+      "online": true
+    },
+    "downloads": 9,
+    "versionMapping": {
+      "1.0.0-a5": "1.1.2",
+      "1.0.0-a4": "1.0.2"
+    }
+  },
+  "FindMyPhone": {
+    "name": "FindMyPhone",
+    "icon": "fab fa-battle-net",
+    "category": "assistance",
+    "author": "Psychokiller1888",
+    "maintainers": ["maxbachmann"],
+    "desc": "Using ifttt one can ask Alice to find his phone. Sets the ring tone at max volume and initiates a call on it.",
+    "conditions": {
+      "lang": ["en", "fr", "de"],
+      "skill": [{
+        "name": "Ifttt",
+        "url": "http://skills.projectalice.ch/ifttt"
+      }],
+      "online": true
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-a4": "1.0.10"
+    }
+  },
+  "MpdClient": {
+    "name": "MpdClient",
+    "icon": "fab fa-battle-net",
+    "category": "music",
+    "author": "glueckself",
+    "maintainers": ["maxbachmann"],
+    "desc": "Control an MPD server",
+    "conditions": {
+      "lang": ["en", "de"]
+    },
+    "downloads": 3,
+    "versionMapping": {
+      "1.0.0-a5": "0.0.25",
+      "1.0.0-a4": "0.0.21"
+    }
+  },
+  "GarageDoorControl": {
+    "name": "GarageDoorControl",
+    "icon": "fas fa-warehouse",
+    "category": "automation",
+    "author": "mjlill",
+    "maintainers": ["maxbachmann", "Psychokiller1888"],
+    "desc": "Garage door control",
+    "conditions": {
+      "lang": ["en", "de"]
+    },
+    "downloads": 1,
+    "versionMapping": {
+      "1.0.0-a4": "1.0.1"
+    }
+  },
+  "RockPaperScissors": {
+    "name": "RockPaperScissors",
+    "icon": "fas fa-hand-scissors",
+    "category": "game",
+    "author": "maxbachmann",
+    "maintainers": ["Jierka", "Psycho"],
+    "desc": "Play rock paper scissors",
+    "conditions": {
+      "lang": ["en", "de", "fr"],
+      "notSkill": ["Psychokiller1888/Minigames"]
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-a5": "1.0.1",
+      "1.0.0-a4": "0.0.18"
+    }
+  },
+  "RandomUselessFacts": {
+    "name": "RandomUselessFacts",
+    "icon": "fas fa-comment-dots",
+    "category": "entertainment",
+    "author": "Psychokiller1888",
+    "maintainers": ["maxbachmann"],
+    "desc": "Gets you the daily random useless fact or a random one",
+    "conditions": {
+      "lang": ["en", "de"],
+      "online": true
+    },
+    "downloads": 2,
+    "versionMapping": {
+      "1.0.0-a4": "1.0.51"
+    }
+  },
+  "Calculator": {
+    "name": "Calculator",
+    "icon": "fas fa-calculator",
+    "category": "assistance",
+    "author": "Psychokiller1888",
+    "maintainers": ["maxbachmann", "Jierka"],
+    "desc": "Do some calculation with alice",
+    "conditions": {
+      "lang": ["en", "de", "fr"]
+    },
+    "downloads": 2,
+    "versionMapping": {
+      "1.0.0-a4": "1.0.25"
+    }
+  },
+  "Speller": {
+    "name": "Speller",
+    "icon": "fab fa-battle-net",
+    "category": "assistance",
+    "author": "Psychokiller1888",
+    "maintainers": ["maxbachmann"],
+    "desc": "Ask alice how to spell any word!",
+    "conditions": {
+      "lang": ["en", "fr"],
+      "asrArbitraryCapture": true
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-a5": "1.1.2",
+      "1.0.0-a4": "1.0.6"
+    }
+  },
+  "AliceSatellite": {
+    "name": "AliceSatellite",
+    "icon": "fas fa-satellite",
+    "category": "alice",
+    "author": "ProjectAlice",
+    "maintainers": ["Psycho", "Jierka", "maxbachmann", "philipp2310"],
+    "desc": "AliceSatellite is the official skill to support Project Alice satellites",
+    "conditions": {
+      "lang": ["en", "fr", "de", "it"]
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-b3": "1.3.9",
+      "1.0.0-b1": "1.3.7",
+      "1.0.0-a4": "1.0.13"
+    }
+  },
+  "PrinterControl": {
+    "name": "PrinterControl",
+    "icon": "fas fa-print",
+    "category": "automation",
+    "author": "mjlill",
+    "maintainers": ["maxbachmann", "Psychokiller1888"],
+    "desc": "Printer on / off control",
+    "conditions": {
+      "lang": ["en", "de"]
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-a4": "1.0.1"
+    }
+  },
+  "RandomIpDevice": {
+    "name": "RandomIpDevice",
+    "icon": "fas fa-network-wired",
+    "category": "household",
+    "author": "philipp2310",
+    "maintainers": [],
+    "desc": "Monitor and access any device reachable via ip",
+    "conditions": {
+      "lang": ["en", "de"],
+      "asrArbitraryCapture": false
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-b1": "1.0.2"
+    }
+  },
+  "YoutubeJukebox": {
+    "name": "YoutubeJukebox",
+    "icon": "fab fa-youtube",
+    "category": "music",
+    "author": "Jierka",
+    "maintainers": ["Psycho", "maxbachmann"],
+    "desc": "Allows to play music from youtube",
+    "conditions": {
+      "lang": ["en", "fr"],
+      "online": true
+    },
+    "downloads": 1,
+    "versionMapping": {
+      "1.0.0-a5": "1.1.4",
+      "1.0.0-a4": "1.0.10"
+    }
+  },
+  "Reminder": {
+    "name": "Reminder",
+    "icon": "fas fa-hourglass-half",
+    "category": "organisation",
+    "author": "Lazza",
+    "maintainers": ["Psycho", "philipp2310"],
+    "desc": "Set local reminders such as \" set a reminder in 10 minutes \"",
+    "conditions": {
+      "lang": ["en", "de"],
+      "asrArbitraryCapture": true
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-b1": "1.1.5"
+    }
+  },
+  "Wikipedia": {
+    "name": "Wikipedia",
+    "icon": "fab fa-wikipedia-w",
+    "category": "information",
+    "author": "Psychokiller1888",
+    "maintainers": ["Jierka", "maxbachmann", "philipp2310"],
+    "desc": "Allows one to find informations about a topic on wikipedia",
+    "conditions": {
+      "lang": ["en", "fr", "de"],
+      "online": true
+    },
+    "downloads": 1,
+    "versionMapping": {
+      "1.0.0-a5": "1.1.5",
+      "1.0.0-a4": "1.0.42"
+    }
+  },
+  "HomeAssistant": {
+    "name": "HomeAssistant",
+    "icon": "fad fa-house",
+    "category": "household",
+    "author": "Lazza",
+    "maintainers": [],
+    "desc": "Connect alice to your home assistant. You can then control any switches you have in Home Assistant . Refer readme and instrctions for more info",
+    "conditions": {
+      "lang": ["en"],
+      "asrArbitraryCapture": true,
+      "skill": ["Telemetry"],
+      "activeManager": ["TelemetryManager"]
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-b2": "2.0.1",
+      "1.0.0-b1": "0.1.0"
+    }
+  },
+  "Tasmota": {
+    "name": "Tasmota",
+    "icon": "fas fa-microchip",
+    "category": "automation",
+    "author": "Psychokiller1888",
+    "maintainers": ["maxbachmann", "philipp2310"],
+    "desc": "This skill allows you to not only connect tasmota esp devices, but listen to them",
+    "conditions": {
+      "lang": ["en", "fr", "de"],
+      "online": true
+    },
+    "downloads": 4,
+    "versionMapping": {
+      "1.0.0-b1": "1.3.4",
+      "1.0.0-a5": "1.1.3",
+      "1.0.0-a4": "1.0.37"
+    }
+  },
+  "TextInputWidget": {
+    "name": "TextInputWidget",
+    "icon": "fas fa-keyboard",
+    "category": "automation",
+    "author": "philipp2310",
+    "maintainers": ["maxbachmann", "Psycho"],
+    "desc": "Gives you a widget with direct text input for alice",
+    "conditions": {
+      "lang": ["en", "de", "fr"]
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-b3": "1.0.8",
+      "1.0.0-b1": "1.0.4",
+      "1.0.0-a5": "1.0.2"
+    }
+  },
+  "Minigames": {
+    "name": "Minigames",
+    "icon": "fas fa-gamepad",
+    "category": "game",
+    "author": "Psychokiller1888",
+    "maintainers": ["maxbachmann"],
+    "desc": "Play a collection of many little games with Alice",
+    "conditions": {
+      "lang": ["en", "de", "fr"],
+      "notSkill": ["maxbachmann/RockPaperScissors"]
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-a5": "1.0.20",
+      "1.0.0-a4": "1.0.13"
+    }
+  },
+  "OvenTemperatureConversion": {
+    "name": "OvenTemperatureConversion",
+    "icon": "fas fa-temperature-high",
+    "category": "information",
+    "author": "LazzaAU",
+    "maintainers": ["Psycho", "Phillipp"],
+    "desc": "Convert temperature between F and C and also out put the correct oven gas mark",
+    "conditions": {
+      "lang": ["en"]
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-a6": "1.0.7"
+    }
+  },
+  "Netatmo": {
+    "name": "Netatmo",
+    "icon": "fas fa-sun",
+    "category": "household",
+    "author": "Psychokiller1888",
+    "maintainers": ["maxbachmann"],
+    "desc": "Get readings from your netatmo hardware",
+    "conditions": {
+      "lang": ["en", "fr", "de"],
+      "online": true,
+      "activeManager": ["TelemetryManager"]
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-a5": "1.0.15",
+      "1.0.0-a4": "1.0.8"
+    }
+  },
+  "OpenWeatherMap": {
+    "name": "OpenWeatherMap",
+    "icon": "fas fa-cloud-sun",
+    "category": "weather",
+    "author": "Psychokiller1888",
+    "maintainers": ["maxbachmann", "philipp2310"],
+    "desc": "Weather forecast from openweathermap.com",
+    "conditions": {
+      "lang": ["en", "de"],
+      "online": true
+    },
+    "downloads": 1,
+    "versionMapping": {
+      "1.0.0-a5": "1.1.11",
+      "1.0.0-a4": "1.0.4"
+    }
+  },
+  "Ifttt": {
+    "name": "Ifttt",
+    "icon": "fab fa-battle-net",
+    "category": "automation",
+    "author": "Psychokiller1888",
+    "maintainers": ["maxbachmann"],
+    "desc": "Use ifttt services",
+    "conditions": {
+      "online": true,
+      "lang": ["en"]
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-a5": "1.0.8",
+      "1.0.0-a4": "1.0.5"
+    }
+  },
+  "Respeaker2": {
+    "name": "Respeaker2",
+    "icon": "far fa-hand-point-down",
+    "category": "automation",
+    "author": "Psychokiller1888",
+    "maintainers": [],
+    "desc": "Let's you configure the gpio button available on the device",
+    "conditions": {
+      "lang": ["en", "fr", "de", "it"]
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-b2": "1.0.1"
+    }
+  },
+  "PhilipsHue": {
+    "name": "PhilipsHue",
+    "icon": "far fa-lightbulb",
+    "category": "automation",
+    "author": "Psychokiller1888",
+    "maintainers": ["Jierka", "maxbachmann", "Fe3lApAcUt"],
+    "desc": "Control your Philips Hue lamps",
+    "conditions": {
+      "lang": ["en", "de"]
+    },
+    "downloads": 1,
+    "versionMapping": {
+      "1.0.0-b1": "1.1.14",
+      "1.0.0-a5": "1.1.11",
+      "1.0.0-a4": "1.0.35"
+    }
+  },
+  "CoronaVirus": {
+    "name": "CoronaVirus",
+    "icon": "fas fa-biohazard",
+    "category": "health",
+    "author": "psycho",
+    "maintainers": [],
+    "desc": "Information about the spread of the virus, worldwide.",
+    "conditions": {
+      "lang": ["en", "de", "fr"],
+      "online": true
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-a6": "1.0.15"
+    }
+  },
+  "Sonos": {
+    "name": "Sonos",
+    "icon": "fas fa-music",
+    "category": "music",
+    "author": "Psychokiller1888",
+    "maintainers": ["Fe3lApAcUt"],
+    "desc": "Let alice control your sonos hardware",
+    "conditions": {
+      "lang": ["en", "de"],
+      "asrArbitraryCapture": true
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-a6": "1.0.6"
+    }
+  },
+  "FreeCurrencyConverterDotCom": {
+    "name": "FreeCurrencyConverterDotCom",
+    "icon": "fas fa-comments-dollar",
+    "category": "information",
+    "author": "Psychokiller1888",
+    "maintainers": ["maxbachmann", "Fe3lApAcUt", "philipp2310"],
+    "desc": "Let's you convert world currencies",
+    "conditions": {
+      "lang": ["en", "fr", "de"],
+      "online": true
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-a5": "1.0.38",
+      "1.0.0-a4": "1.0.31"
+    }
+  },
+  "BringShoppingList": {
+    "name": "BringShoppingList",
+    "icon": "fas fa-shopping-bag",
+    "category": "shopping",
+    "author": "philipp2310",
+    "maintainers": ["maxbachmann", "Psychokiller1888"],
+    "desc": "Maintain your Bring! Shopping list",
+    "conditions": {
+      "lang": ["en", "de"],
+      "online": true
+    },
+    "downloads": 1,
+    "versionMapping": {
+      "1.0.0-a5": "1.1.7",
+      "1.0.0-a4": "1.0.11"
+    }
+  },
+  "Broadcast": {
+    "name": "Broadcast",
+    "icon": "far fa-comments",
+    "category": "entertainment",
+    "author": "Lazza",
+    "maintainers": [],
+    "desc": "Broadcast voice message to satellites",
+    "conditions": {
+      "lang": ["en", "de"],
+      "asrArbitraryCapture": true
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-b1": "1.0.5"
+    }
+  },
+  "MqttBridge": {
+    "name": "MqttBridge",
+    "icon": "fab fa-battle-net",
+    "category": "automation",
+    "author": "maxbachmann",
+    "maintainers": [],
+    "desc": "bridge events between alice and mqtt",
+    "conditions": {},
+    "downloads": 1,
+    "versionMapping": {
+      "1.0.0-a5": "0.0.5",
+      "1.0.0-a4": "0.0.2"
+    }
+  },
+  "InternationalSpaceStation": {
+    "name": "InternationalSpaceStation",
+    "icon": "fas fa-space-shuttle",
+    "category": "information",
+    "author": "mjlill",
+    "maintainers": ["maxbachmann", "Psycho", "philipp2310"],
+    "desc": "Inquire information about the international space station",
+    "conditions": {
+      "lang": ["en", "de", "fr"],
+      "online": true
+    },
+    "downloads": 1,
+    "versionMapping": {
+      "1.0.0-a4": "1.0.28"
+    }
+  },
+  "Velux": {
+    "name": "Velux",
+    "icon": "fas fa-house-user",
+    "category": "automation",
+    "author": "Psychokiller1888",
+    "maintainers": [],
+    "desc": "Control your velux equipment with your voice! this requires a velux remote hack",
+    "conditions": {
+      "lang": ["en"]
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-b1": "1.0.1"
+    }
+  },
+  "SpeechVisualizer": {
+    "name": "SpeechVisualizer",
+    "author": "philipp2310",
+    "maintainers": ["Psychokiller1888"],
+    "desc": "Shows the voice in and output as a widget",
+    "icon": "fas fa-comments",
+    "category": "assistance",
+    "conditions": {
+      "lang": ["en", "fr", "de", "it"],
+      "asrArbitraryCapture": true,
+      "activeManager": []
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-b3": "1.0.4",
+      "1.0.0-a6": "1.0.3",
+      "1.0.0-a5": "0.0.5"
+    }
+  },
+  "IcanhazdadjokeDotCom": {
+    "name": "IcanhazdadjokeDotCom",
+    "icon": "far fa-grin-beam-sweat",
+    "category": "entertainment",
+    "author": "Psychokiller1888",
+    "maintainers": ["maxbachmann", "Jierka", "philipp2310"],
+    "desc": "Get a random dad joke on demand!",
+    "conditions": {
+      "lang": ["en"],
+      "online": true
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-a4": "1.0.24"
+    }
+  },
+  "TVProgram": {
+    "name": "TVProgram",
+    "icon": "fas fa-tv",
+    "category": "information",
+    "author": "philipp2310",
+    "maintainers": ["Psychokiller1888", "maxbachmann"],
+    "desc": "What's on TV today?",
+    "conditions": {
+      "lang": ["de"],
+      "online": true
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-a5": "1.1.5",
+      "1.0.0-a4": "1.0.3"
+    }
+  },
+  "Userfacts": {
+    "name": "Userfacts",
+    "icon": "fas fa-user-check",
+    "category": "entertainment",
+    "author": "Psychokiller1888",
+    "maintainers": [],
+    "desc": "Now alice can remember things you teach her!",
+    "conditions": {
+      "lang": ["en"],
+      "asrArbitraryCapture": true
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-a6": "1.0.2"
+    }
+  },
+  "ContextSensitive": {
+    "name": "ContextSensitive",
+    "icon": "fas fa-brain",
+    "category": "alice",
+    "author": "ProjectAlice",
+    "maintainers": ["Psycho", "maxbachmann"],
+    "desc": "ContextSensitive is the official context sensitive skill. It handles intents like 'Delete this', 'Change that', 'Please repeat",
+    "conditions": {
+      "lang": ["en", "fr", "de", "it"]
+    },
+    "downloads": 25,
+    "versionMapping": {
+      "1.0.0-b1": "1.0.23",
+      "1.0.0-a6": "1.0.19",
+      "1.0.0-a5": "1.0.15",
+      "1.0.0-a4": "1.0.12"
+    }
+  },
+  "Respeaker6": {
+    "name": "Respeaker6",
+    "icon": "far fa-hand-point-down",
+    "category": "automation",
+    "author": "Psychokiller1888",
+    "maintainers": [],
+    "desc": "Let's you configure the gpio button available on the device",
+    "conditions": {
+      "lang": ["en", "fr", "de", "it"]
+    },
+    "downloads": 0,
+    "versionMapping": {
+      "1.0.0-b3": "1.0.1"
+    }
+  }
+}
