@@ -36,8 +36,8 @@ export default {
 @font-face { font-family: 'Roboto'; font-weight: normal; font-style: normal; src: url('./assets/webfonts/Roboto-Regular.eot'); src: url('./assets/webfonts/Roboto-Regular.eot?#iefix') format('embedded-opentype'), url('./assets/webfonts/Roboto-Regular.woff2') format('woff2'), url('./assets/webfonts/Roboto-Regular.woff') format('woff'), url('./assets/webfonts/Roboto-Regular.ttf') format('truetype'), url('./assets/webfonts/Roboto-Regular.svg#Roboto-Regular') format('svg'); }
 
 /* ========================= BUILT IN TAGS ======================== */
-html, body { background-color: var(--accent); color: var(--text); font-family: var(--short); width: 100%; height: 100%; overflow: hidden; margin: 0; display: flex; flex-flow: column; -moz-user-select: none; -webkit-touch-callout: none; -webkit-user-select: none; -ms-user-select: none; user-select: none; -khtml-user-select: none; }
-header { background-color: var(--mainBG); width: 100%; position: fixed; }
+html, body { background-color: var(--accent); color: var(--text); font-family: var(--short); width: 100%; height: 100%; margin: 0; display: flex; flex-flow: column; -moz-user-select: none; -webkit-touch-callout: none; -webkit-user-select: none; -ms-user-select: none; user-select: none; -khtml-user-select: none; }
+header { background-color: var(--mainBG); width: 100%; position: fixed; z-index: 999; }
 nav { background-color: var(--mainBG); width: 9.4em; flex-shrink: 0; margin-left: .125em; }
 main { background-color: var(--mainBG); flex-grow: 1; position: relative; margin-left: 2px;  flex-flow: column; padding: .3em; }
 a:link, a:visited, a:active { text-decoration: none; color: var(--text); }
@@ -48,9 +48,7 @@ input[type='text'], input[type='password'], input[type='number'], select, textar
 textarea { min-height: 200px; }
 input:focus, textarea:focus { border: var(--hover) dotted 1px; }
 
-/* ======================= COLOR MARKINGS ======================== */
-.red, .disabled, .warning, .saveFailed, .logError, .logRed { color: red; }
-.green, .saved, .logGreen { color: green; }
-.yellow, .active, .saving, .logYellow { color: yellow; }
+::-webkit-scrollbar { width: 8px; background-color: var(--accent); }
+::-webkit-scrollbar-thumb { background-color: var(--secondary); }
 
 </style>
