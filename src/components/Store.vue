@@ -1,8 +1,5 @@
 <template>
   <div id="Store">
-    <div class="menuOverlay">
-      blabal
-    </div>
     <header>
       <div class="title">
         Project Alice skill store
@@ -11,12 +8,27 @@
         For every task there's a skill and if not, we can make it
       </div>
       <div class="menu">
-        <i class="fad fa-bars"></i>
+        <i class="fad fa-bars " v-on:click="menuOpen = !menuOpen" :class="[menuOpen ? 'fad fa-times' : 'fad fa-bars']"></i>
+        <transition name="expandMenu" mode="out-in">
+          <div class="menuContainer" v-bind:class="{menuContainerOpen: menuOpen}">
+            <div class="menuItem">
+              <a class="menuLink" href="https://github.com/project-alice-assistant" title="Github">
+                <i class="fab fa-github"></i>
+              </a>
+              <a class="menuLink" href="https://discord.gg/C6HNtzV" title="Discord">
+                <i class="fab fa-discord"></i>
+              </a>
+              <a class="menuLink" href="https://docs.projectalice.io/" title="Documentation">
+                <i class="fad fa-book-alt"></i>
+              </a>
+            </div>
+          </div>
+        </transition>
       </div>
     </header>
     <div class="storeContainer">
       <ul id="storeSkills">
-        <li v-for="skill in skills" :key="skill">
+        <li v-for="skill in skills" :key="skill" v-on:click="grow($event)">
           <div class="skillIcon">
             <i :class="skill.icon"></i>
           </div>
@@ -36,7 +48,8 @@ export default {
   name: 'Store',
   data() {
     return {
-      skills: []
+      skills: [],
+      menuOpen: false
     }
   },
   methods: {
@@ -44,6 +57,12 @@ export default {
       fetch('https://skills.projectalice.io/assets/store/master.json')
           .then(response => response.json())
           .then(data => (this.skills = data));
+    },
+    grow(event) {
+      console.log(event);
+    },
+    toggleMenu() {
+      this.menuOpen = !this.menuOpen
     }
   },
   beforeMount() {
@@ -61,15 +80,6 @@ export default {
     display: flex;
     flex-flow: row;
     align-items: stretch;
-  }
-  .menuOverlay {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--secondary);
   }
   .title {
     box-sizing: border-box;
@@ -155,8 +165,30 @@ export default {
     font-size: 3em;
     cursor: pointer;
     transition: all .1s ease-in-out;
+    width: 100px;
+    text-align: right;
   }
-  .menu:hover {
-    font-size: 3.2em;
+  .fa-bars:hover {
+    font-size: 1.1em;
+  }
+  .menuContainer {
+    width: 0;
+    height: 0;
+    margin-top: 20px;
+    display: none;
+  }
+  .menuContainerOpen {
+    transition: width 1s ease-out;
+    width: 100px;
+    transition-property: width;
+    display: block;
+  }
+  .menuLink {
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  .menuLink:hover {
+    color: yellow;
   }
 </style>
