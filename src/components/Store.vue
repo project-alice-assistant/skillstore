@@ -31,14 +31,23 @@
 </template>
 
 <script>
-import storeData from '../data.json';
 
 export default {
   name: 'Store',
   data() {
     return {
-      skills: storeData
+      skills: []
     }
+  },
+  methods: {
+    getStoreData() {
+      fetch('https://skills.projectalice.io/assets/store/master.json')
+          .then(response => response.json())
+          .then(data => (this.skills = data));
+    }
+  },
+  beforeMount() {
+    this.getStoreData();
   }
 }
 </script>
