@@ -118,7 +118,7 @@ export default {
   }
   li {
     width: 20%;
-    min-width: 20%;
+    min-width: 150px;
     height: 350px;
     background-color: var(--secondary);
     margin: 15px;
@@ -168,7 +168,7 @@ export default {
   }
   .menu {
     position: absolute;
-    top: 15px;
+    top: 55px;
     right: 15px;
     font-size: 3em;
     cursor: pointer;
