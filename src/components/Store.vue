@@ -11,8 +11,8 @@
         <select id="orderBy" name="orderBy" @change="changeOrder($event.target.value)">
           <option value="name" selected>Order by</option>
           <option value="name">Name</option>
-          <option value="downloads">Downloads</option>
           <option value="author">Author</option>
+          <option value="downloads">Downloads</option>
         </select>
         <select id="direction" name="direction" @change="changeSortingDirection($event.target.value)">
           <option value="asc" selected>A-Z</option>

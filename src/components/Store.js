@@ -1,5 +1,6 @@
 let storeSkills;
 
+// noinspection JSUnusedGlobalSymbols
 export default {
 	name: 'Store',
 	data() {
@@ -37,36 +38,54 @@ export default {
 				filtered = storeSkills;
 			}
 
-
 			let skills = {};
-			let ordered = []
 			filtered.forEach(function(skill) {
-				skills[skill.name] = skill;
+				if (!(skill[self.orderBy] in skills)) {
+					skills[skill[self.orderBy].toString()] = [];
+				}
+				skills[skill[self.orderBy].toString()].push(skill);
 			});
 
-			let keys = Object.keys(skills);
-			keys.sort(function(a, b) {
+			let keys = this.sort(self, Object.keys(skills));
+			let ordered = []
+			keys.forEach(function(index) {
+				let skillList = skills[index];
+				let subDict = {}
+				skillList.forEach(function(data) {
+					subDict[data.name] = data;
+				});
+
+				let subKeys = self.sort(self, Object.keys(subDict));
+				let subSorted = [];
+				subKeys.forEach(function (key) {
+					subSorted.push(subDict[key])
+				});
+
+				subSorted.forEach(function(skill) {
+					ordered.push(skill);
+				});
+			});
+
+			this.skills = ordered;
+		},
+		sort(self, list) {
+			list.sort(function(a, b) {
 				if (a.toLowerCase() < b.toLowerCase()) return -1;
 				if (a.toLowerCase() > b.toLowerCase()) return 1;
 				return 0;
 			});
 
-			if (this.sortDirection === 'desc') {
-				keys.reverse();
+			if (self.sortDirection === 'desc') {
+				list.reverse();
 			}
-
-			keys.forEach(function(data) {
-				ordered.push(skills[data]);
-			});
-
-			this.skills = ordered;
+			return list;
 		},
 		changeSortingDirection(direction) {
-			this.sortDirection = direction;
+			this.sortDirection = direction.toLowerCase();
 			this.listSkills();
 		},
 		changeOrder(value)  {
-			this.orderBy = value;
+			this.orderBy = value.toLowerCase();
 			this.listSkills();
 		},
 		setFilter(input) {
