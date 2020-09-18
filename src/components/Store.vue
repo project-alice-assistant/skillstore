@@ -28,7 +28,7 @@
     </header>
     <div class="storeContainer">
       <ul id="storeSkills">
-        <li v-for="skill in skills" :key="skill" v-on:click="grow($event)">
+        <li v-for="skill in skills" :key="skill.name" v-on:click="grow($event)">
           <div class="skillIcon">
             <i :class="skill.icon"></i>
           </div>
@@ -56,13 +56,21 @@ export default {
     getStoreData() {
       fetch('https://skills.projectalice.io/assets/store/master.json')
           .then(response => response.json())
-          .then(data => (this.skills = data));
+          .then(data => (this.skills = this.sortedStore(data)));
     },
     grow(event) {
       console.log(event);
     },
     toggleMenu() {
       this.menuOpen = !this.menuOpen
+    },
+    sortedStore(data) {
+      let keys = Object.keys(data).sort();
+      let orderedSkills = [];
+      keys.forEach(function(skillName) {
+        orderedSkills.push(data[skillName])
+      });
+      return orderedSkills;
     }
   },
   beforeMount() {
