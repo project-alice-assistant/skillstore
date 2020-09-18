@@ -6,7 +6,9 @@ export default {
 		return {
 			skills: [],
 			menuOpen: false,
-			sortDirection: 'asc'
+			sortDirection: 'asc',
+			orderBy: 'name',
+			skillFilter: ''
 		}
 	},
 	methods: {
@@ -15,64 +17,61 @@ export default {
 			fetch('https://skills.projectalice.io/assets/store/master.json')
 				.then(response => response.json())
 				.then(function(data) {
-					storeSkills = data;
-					self.orderSkills();
+					storeSkills = Object.values(data);
+					self.listSkills();
 				});
 		},
 		toggleMenu() {
 			this.menuOpen = !this.menuOpen;
 		},
-		orderSkills(by = 'name') {
-			let keys;
-			if (by === 'name') {
-				keys = this.sort(storeSkills);
-			}
-			else if (by === 'author') {
-				let tempDict = {};
-				for (const skill of Object.values(storeSkills)) {
-					let author = skill['author'];
-					if (!(author in tempDict)) {
-						tempDict[author] = []
+		listSkills() {
+			let filtered = [];
+			let self = this;
+			if (this.skillFilter !== '') {
+				storeSkills.forEach(function(skill) {
+					if (skill['name'].toLowerCase().includes(self.skillFilter)) {
+						filtered.push(skill);
 					}
-					tempDict[author].push(skill);
-				}
-				keys = this.sort(tempDict);
-				keys.forEach(function(authorName) {
-					let list = tempDict[authorName];
-					let subDict = {};
-					list.forEach(function(skill) {
-						subDict[skill['name']] = skill;
-					});
-					console.log(subDict)
-					//let sortedSubKeys = this.sort(subDict);
-					//console.log(sortedSubKeys);
-				})
+				});
+			} else {
+				filtered = storeSkills;
 			}
 
-			let orderedSkills = [];
-			keys.forEach(function(skillName) {
-				orderedSkills.push(storeSkills[skillName])
+
+			let skills = {};
+			let ordered = []
+			filtered.forEach(function(skill) {
+				skills[skill.name] = skill;
 			});
-			this.skills = orderedSkills;
-		},
-		changeSortingDirection(direction) {
-			this.sortDirection = direction;
-			this.orderSkills();
-		},
-		changeOrder(value)  {
-			this.orderSkills(value);
-		},
-		sort(dict) {
-			let keys = Object.keys(dict);
+
+			let keys = Object.keys(skills);
 			keys.sort(function(a, b) {
 				if (a.toLowerCase() < b.toLowerCase()) return -1;
 				if (a.toLowerCase() > b.toLowerCase()) return 1;
 				return 0;
 			});
+
 			if (this.sortDirection === 'desc') {
 				keys.reverse();
 			}
-			return keys;
+
+			keys.forEach(function(data) {
+				ordered.push(skills[data]);
+			});
+
+			this.skills = ordered;
+		},
+		changeSortingDirection(direction) {
+			this.sortDirection = direction;
+			this.listSkills();
+		},
+		changeOrder(value)  {
+			this.orderBy = value;
+			this.listSkills();
+		},
+		setFilter(input) {
+			this.skillFilter = input.toLowerCase();
+			this.listSkills();
 		}
 	},
 	beforeMount() {

@@ -18,7 +18,7 @@
           <option value="asc" selected>A-Z</option>
           <option value="desc">Z-A</option>
         </select>
-        <input type="text" name="filter" id="filter" placeholder="Search...">
+        <input type="text" name="filterSkill" id="filterSkill" placeholder="Search..." @input="setFilter($event.target.value)">
       </div>
       <div class="menu">
         <i class="fad fa-bars " v-on:click="menuOpen = !menuOpen" :class="[menuOpen ? 'fad fa-times' : 'fad fa-bars']"></i>
