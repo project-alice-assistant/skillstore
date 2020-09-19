@@ -9,7 +9,9 @@ export default {
 			menuOpen: false,
 			sortDirection: 'asc',
 			orderBy: 'name',
-			skillFilter: ''
+			skillFilter: '',
+			cookieIcon: 'fad fa-cookie fa-lg',
+			showCookiesWarning: true
 		}
 	},
 	methods: {
@@ -101,9 +103,17 @@ export default {
 		setFilter(input) {
 			this.skillFilter = input.toLowerCase();
 			this.listSkills();
+		},
+		acceptCookies() {
+			this.cookieIcon = 'fad fa-cookie-bite fa-lg';
+			this.showCookiesWarning = false;
+		},
+		refuseCookies() {
+			this.showCookiesWarning = false;
 		}
 	},
 	beforeMount() {
+		console.log(this.$cookies.get('alicestore'));
 		this.getStoreData();
 	}
 }

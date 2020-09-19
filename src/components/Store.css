@@ -172,3 +172,46 @@ li:hover {
 	align-content: center;
 	justify-content: center;
 }
+
+.footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	background-color: var(--secondary);
+	height: 70px;
+	padding: 15px;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.cookies {
+	font-size: 1.33em;
+	font-family: var(--readable);
+	text-align: center;
+}
+
+.acceptCookies {
+	color: var(--hover);
+	cursor: pointer;
+}
+
+.noCookies {
+	position: fixed;
+	right: 50px;
+	bottom: 15px;
+	cursor: pointer;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 1.5s
+}
+
+.fade-enter,
+.fade-leave-to {
+	opacity: 0
+}

@@ -66,6 +66,19 @@
         </li>
       </ul>
     </div>
+    <transition name="fade" v-on:enter="enter">
+      <div class="footer" v-if="showCookiesWarning">
+        <div class="cookies">
+          <i :class="cookieIcon"></i> We do not use cookies but we can, if you wish so, to make your experience better. <span class="acceptCookies" @click="acceptCookies" title="Accept cookies">Yummi!</span> <i :class="cookieIcon"></i>
+        </div>
+        <div class="noCookies" @click="refuseCookies" title="Refuse cookies">
+          <span class="fa-stack fa-lg">
+            <i class="fad fa-wheat fa-stack-1x"></i>
+            <i class="fal fa-ban fa-stack-2x"></i>
+          </span>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
