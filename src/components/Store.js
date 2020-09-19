@@ -30,7 +30,7 @@ export default {
 			let self = this;
 			if (this.skillFilter !== '') {
 				storeSkills.forEach(function(skill) {
-					if (skill['name'].toLowerCase().includes(self.skillFilter)) {
+					if (skill[self.orderBy].toLowerCase().includes(self.skillFilter)) {
 						filtered.push(skill);
 					}
 				});
@@ -86,6 +86,11 @@ export default {
 		},
 		changeOrder(value)  {
 			this.orderBy = value.toLowerCase();
+			this.listSkills();
+		},
+		authorLinkClicked(author)  {
+			this.orderBy = 'author';
+			this.skillFilter = author.toLowerCase();
 			this.listSkills();
 		},
 		setFilter(input) {

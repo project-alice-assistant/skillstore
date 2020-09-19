@@ -8,17 +8,17 @@
         For every task there's a skill and if not, we can make it
       </div>
       <div class="optionsContainer">
-        <select id="orderBy" name="orderBy" @change="changeOrder($event.target.value)">
+        <select id="orderBy" name="orderBy" @change="changeOrder($event.target.value)" v-bind:value="orderBy">
           <option value="name" selected>Order by</option>
           <option value="name">Name</option>
           <option value="author">Author</option>
           <option value="downloads">Downloads</option>
         </select>
-        <select id="direction" name="direction" @change="changeSortingDirection($event.target.value)">
+        <select id="direction" name="direction" @change="changeSortingDirection($event.target.value)" v-bind:value="sortDirection">
           <option value="asc" selected>A-Z</option>
           <option value="desc">Z-A</option>
         </select>
-        <input type="text" name="filterSkill" id="filterSkill" placeholder="Search..." @input="setFilter($event.target.value)">
+        <input type="text" name="filterSkill" id="filterSkill" placeholder="Search..." @input="setFilter($event.target.value)" v-bind:value="skillFilter">
       </div>
       <div class="menu">
         <i class="fad fa-bars " v-on:click="menuOpen = !menuOpen" :class="[menuOpen ? 'fad fa-times' : 'fad fa-bars']"></i>
@@ -48,6 +48,14 @@
           <div class="skillInfos">
             <div class="skillName">{{ skill.name }}</div>
             <div class="skillDescription">{{ skill.desc }}</div>
+            <div class="skillTechInfo">
+              <div class="skillAuthor" @click="authorLinkClicked(skill.author)">
+                <i class="fad fa-at"></i> {{ skill.author }}
+              </div>
+              <div class="skillDownloads">
+                <i class="fad fa-cloud-download"></i> {{ skill.downloads }}
+              </div>
+            </div>
           </div>
         </li>
       </ul>
