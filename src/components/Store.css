@@ -206,6 +206,10 @@ li:hover {
 	cursor: pointer;
 }
 
+.noCookies:hover {
+	color: var(--hover);
+}
+
 .fade-enter-active,
 .fade-leave-active {
 	transition: opacity 1.5s

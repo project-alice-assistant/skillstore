@@ -11,7 +11,9 @@ export default {
 			orderBy: 'name',
 			skillFilter: '',
 			cookieIcon: 'fad fa-cookie fa-lg',
-			showCookiesWarning: true
+			showCookiesWarning: true,
+			cookiesRefused: false,
+			cookiesAccepted: false
 		}
 	},
 	methods: {
@@ -84,36 +86,66 @@ export default {
 		},
 		changeSortingDirection(direction) {
 			this.sortDirection = direction.toLowerCase();
+			if (this.cookiesAccepted) {
+				this.$cookies.set('sortDirection', this.sortDirection);
+			}
 			this.listSkills();
 		},
 		changeOrder(value)  {
 			this.orderBy = value.toLowerCase();
+			if (this.cookiesAccepted) {
+				this.$cookies.set('orderBy', this.orderBy);
+			}
 			this.listSkills();
 		},
 		authorLinkClicked(author)  {
 			this.orderBy = 'author';
 			this.skillFilter = author.toLowerCase();
+
+			if (this.cookiesAccepted) {
+				this.$cookies.set('orderBy', 'author');
+				this.$cookies.set('skillFilter', this.skillFilter);
+			}
+
 			this.listSkills();
 		},
 		downloadsLinkClicked(number)  {
 			this.orderBy = 'downloads';
 			this.skillFilter = number;
+
+			if (this.cookiesAccepted) {
+				this.$cookies.set('orderBy', 'downloads');
+				this.$cookies.set('skillFilter', this.skillFilter);
+			}
+
 			this.listSkills();
 		},
 		setFilter(input) {
 			this.skillFilter = input.toLowerCase();
+			if (this.cookiesAccepted) {
+				this.$cookies.set('skillFilter', input);
+			}
 			this.listSkills();
 		},
 		acceptCookies() {
 			this.cookieIcon = 'fad fa-cookie-bite fa-lg';
 			this.showCookiesWarning = false;
+			this.cookiesAccepted = true;
+			this.$cookies.set('visited', true);
 		},
 		refuseCookies() {
 			this.showCookiesWarning = false;
+			this.cookiesRefused = false;
 		}
 	},
 	beforeMount() {
-		console.log(this.$cookies.get('alicestore'));
+		if (this.$cookies.get('visited')) {
+			this.showCookiesWarning = false;
+			this.cookiesAccepted = true;
+			this.orderBy = this.$cookies.get('orderBy') ? this.$cookies.get('orderBy') : 'name';
+			this.sortDirection = this.$cookies.get('sortDirection') ? this.$cookies.get('sortDirection') : 'asc';
+			this.skillFilter = this.$cookies.get('skillFilter') ? this.$cookies.get('skillFilter') : '';
+		}
 		this.getStoreData();
 	}
 }
