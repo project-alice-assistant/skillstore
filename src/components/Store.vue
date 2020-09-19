@@ -46,14 +46,20 @@
             <i :class="skill.icon"></i>
           </div>
           <div class="skillInfos">
-            <div class="skillName">{{ skill.name }}</div>
-            <div class="skillDescription">{{ skill.desc }}</div>
-            <div class="skillTechInfo">
-              <div class="skillAuthor" @click="authorLinkClicked(skill.author)">
-                <i class="fad fa-at"></i> {{ skill.author }}
+            <div class="skillInfosInner">
+              <div class="cardFront">
+                <div class="skillName">{{ skill.name }}</div>
               </div>
-              <div class="skillDownloads">
-                <i class="fad fa-cloud-download"></i> {{ skill.downloads }}
+              <div class="cardBack">
+                <div class="skillDescription">{{ skill.desc }}</div>
+                <div class="skillTechInfo">
+                  <div class="skillAuthor" @click="authorLinkClicked(skill.author)">
+                    <i class="fad fa-at"></i> {{ skill.author }}
+                  </div>
+                  <div class="skillDownloads" @click="downloadsLinkClicked(skill.downloads)">
+                    <i class="fad fa-cloud-download"></i> {{ skill.downloads }}
+                  </div>
+                </div>
               </div>
             </div>
           </div>

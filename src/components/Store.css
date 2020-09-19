@@ -36,7 +36,8 @@ ul {
 li {
 	width: 20%;
 	min-width: 150px;
-	height: 350px;
+	height: 180px;
+	overflow: hidden;
 	background-color: var(--secondary);
 	margin: 15px;
 	flex-shrink: 0;
@@ -48,26 +49,52 @@ li:hover {
 	-webkit-box-shadow: 6px 6px 25px 0 rgba(128,128,128,1);
 	-moz-box-shadow: 6px 6px 25px 0 rgba(128,128,128,1);
 	box-shadow: 6px 6px 25px 0 rgba(128,128,128,1);
+	height: 350px;
 	transform: translate3d(-5px, -5px, 0px);
 }
 .skillInfos {
+	width: 100%;
+	height: 225px;
+	box-sizing: border-box;
+	perspective: 1000px;
+}
+.skillInfosInner {
 	position: relative;
 	width: 100%;
-	height: 210px;
+	height: 100%;
+	text-align: center;
+	transition: transform 0.8s;
+	transform-style: preserve-3d;
+}
+.skillInfos:hover .skillInfosInner {
+	transform: rotateY(180deg);
+}
+.cardFront, .cardBack {
+	position: absolute;
+	width: 100%;
+	height: 225px;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	padding-left: 15px;
+	padding-right: 15px;
 	box-sizing: border-box;
-	padding-left: 10px;
-	padding-right: 10px;
+}
+.cardBack {
+	transform: rotateY(180deg);
 }
 .skillTechInfo {
 	position: absolute;
-	bottom: 15px;
-	left: 15px;
-	right: 15px;
+	bottom: 0;
+	left: 0;
+	right: 0;
 	display: flex;
+	padding: 15px;
+	box-sizing: border-box;
 }
 .skillAuthor {
 	width: 50%;
 	cursor: pointer;
+	text-align: left;
 }
 .skillAuthor:hover {
 	text-decoration: underline;
@@ -75,6 +102,9 @@ li:hover {
 .skillDownloads {
 	width: 50%;
 	text-align: right;
+}
+.skillDownloads:hover {
+	text-decoration: underline;
 }
 .skillIcon {
 	width: 100%;

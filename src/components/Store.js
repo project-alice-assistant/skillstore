@@ -93,6 +93,11 @@ export default {
 			this.skillFilter = author.toLowerCase();
 			this.listSkills();
 		},
+		downloadsLinkClicked(number)  {
+			this.orderBy = 'downloads';
+			this.skillFilter = number;
+			this.listSkills();
+		},
 		setFilter(input) {
 			this.skillFilter = input.toLowerCase();
 			this.listSkills();
