@@ -28,15 +28,6 @@
 	text-align: center;
 	margin-top: 15px;
 }
-.connector {
-	position: absolute;
-	top: 15px;
-	left: 15px;
-	cursor: pointer;
-}
-.connector:hover {
-	color: var(--hover);
-}
 .description {
 	font-family: var(--readable);
 	font-size: 1em;
@@ -158,35 +149,43 @@ li:hover {
 	text-align: center;
 	overflow: hidden;
 }
-.menu {
+.tools {
 	position: absolute;
-	top: 55px;
-	right: 15px;
-	font-size: 3em;
+	top: 0px;
+	right: 0px;
+	font-size: 1em;
+	display: flex;
+	flex-direction: row;
+}
+.connector {
 	cursor: pointer;
+	padding: 10px;
+}
+.connector:hover {
+	color: var(--hover);
+}
+.menu {
+	cursor: pointer;
+	padding: 10px;
 	transition: all .1s ease-in-out;
-	width: 100px;
-	text-align: right;
 }
 .fa-bars:hover {
-	font-size: 1.1em;
+	transform: scale(1.1);
+	-webkit-transform: scale(1.1);
 }
 .menuContainer {
-	width: 0;
-	height: 0;
-	margin-top: 20px;
-	display: none;
-}
-.menuContainerOpen {
-	transition: width 1s ease-out;
-	width: 100px;
-	transition-property: width;
-	display: block;
+	position: absolute;
+	top: 80px;
+	right: 0;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
 }
 .menuLink {
-	display: block;
-	margin-bottom: 10px;
 	cursor: pointer;
+	display: flex;
+	justify-content: right;
+	margin-bottom: 15px;
 }
 .menuLink:hover {
 	color: yellow;
@@ -205,18 +204,40 @@ li:hover {
 	right: 0;
 	z-index: 10;
 	background-color: var(--secondary);
-	height: 70px;
+	height: 90px;
 	padding: 15px;
 	box-sizing: border-box;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-direction: column;
+}
+
+.tracking {
+	font-size: 0.9em;
+	margin-top: 10px;
+	font-family: var(--readable);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+	justify-items: center;
+	align-items: center;
 }
 
 .cookies {
 	font-size: 1.33em;
 	font-family: var(--readable);
-	text-align: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	justify-items: center;
+}
+
+.textWithMargin {
+	margin: 0 10px 0 10px;
 }
 
 .acceptCookies {
@@ -227,7 +248,7 @@ li:hover {
 .noCookies {
 	position: fixed;
 	right: 50px;
-	bottom: 15px;
+	bottom: 22px;
 	cursor: pointer;
 }
 
@@ -243,4 +264,8 @@ li:hover {
 .fade-enter,
 .fade-leave-to {
 	opacity: 0
+}
+
+.red {
+	color: red;
 }

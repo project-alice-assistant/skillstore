@@ -1,9 +1,9 @@
 <template>
   <div id="Store">
-    <div class="connectInfo" v-show="connectPanelHidden">
-      <input v-model="ip" type="text" placeholder="Alice' ip address">
-      <input v-model="username" type="text" placeholder="Username">
-      <input v-model="pin" type="password" placeholder="Pin code">
+    <div class="connectInfo" v-show="showConnectPanel">
+      <input v-bind:value="ip" type="text" placeholder="Alice' ip address">
+      <input v-bind:value="username" type="text" placeholder="Username">
+      <input v-bind:value="pin" type="password" placeholder="Pin code">
       <input type="button" value="Connect" @click="connect">
     </div>
     <header>
@@ -13,15 +13,10 @@
       <div class="description">
         For every task there's a skill and if not, we can make it
       </div>
-      <div class="connector" title="Connect to Alice" @click="connectPanelHidden = ! connectPanelHidden">
-        <i class="fad fa-plug fa-2x"></i>
-      </div>
       <div class="optionsContainer">
         <select id="orderBy" name="orderBy" @change="changeOrder($event.target.value)" v-bind:value="orderBy">
-          <option value="name" selected>Order by</option>
-          <option value="name">Name</option>
-          <option value="author">Author</option>
-          <option value="downloads">Downloads</option>
+          <option value="name" selected>Order by name</option>
+          <option value="author">Order by author</option>
         </select>
         <select id="direction" name="direction" @change="changeSortingDirection($event.target.value)" v-bind:value="sortDirection">
           <option value="asc" selected>A-Z</option>
@@ -29,23 +24,26 @@
         </select>
         <input type="text" name="filterSkill" id="filterSkill" placeholder="Search..." @input="setFilter($event.target.value)" v-bind:value="skillFilter">
       </div>
-      <div class="menu">
-        <i class="fad fa-bars " v-on:click="menuOpen = !menuOpen" :class="[menuOpen ? 'fad fa-times' : 'fad fa-bars']"></i>
-        <transition name="expandMenu" mode="out-in">
-          <div class="menuContainer" v-bind:class="{menuContainerOpen: menuOpen}">
+      <div class="tools">
+        <div class="connector" title="Connect to Alice" @click="showConnectPanel = !showConnectPanel">
+          <i :class="connectIcon"></i>
+        </div>
+        <div class=menu>
+        <i class="fad fa-bars fa-2x fa-fw" v-on:click="menuOpen = !menuOpen" :class="[menuOpen ? 'fad fa-times fa-2x fa-fw' : 'fad fa-bars fa-2x fa-fw']"></i>
+          <div class="menuContainer" v-show="menuOpen">
             <div class="menuItem">
               <a class="menuLink" href="https://github.com/project-alice-assistant" title="Github">
-                <i class="fab fa-github"></i>
+                <i class="fab fa-github fa-2x fa-fw"></i>
               </a>
               <a class="menuLink" href="https://discord.gg/C6HNtzV" title="Discord">
-                <i class="fab fa-discord"></i>
+                <i class="fab fa-discord fa-2x fa-fw"></i>
               </a>
               <a class="menuLink" href="https://docs.projectalice.io/" title="Documentation">
-                <i class="fad fa-book-alt"></i>
+                <i class="fad fa-book-alt fa-2x fa-fw"></i>
               </a>
             </div>
           </div>
-        </transition>
+        </div>
       </div>
     </header>
     <div class="storeContainer">
@@ -78,9 +76,16 @@
     <transition name="fade">
       <div class="footer" v-show="showCookiesWarning">
         <div class="cookies">
-          <i :class="cookieIcon"></i> We do not use cookies but we can, if you wish so, to make your experience better. <span class="acceptCookies" @click="acceptCookies" title="Accept cookies">Yummi!</span> <i :class="cookieIcon"></i>
+          <i :class="cookieIcon"></i>
+          <span class="textWithMargin">We do not use cookies but we can, if you wish so, to make your experience better. <span class="acceptCookies" @click="acceptCookies" title="Accept cookies">Yummi!</span></span>
+          <i :class="cookieIcon"></i>
         </div>
-        <div class="noCookies" @click="refuseCookies" title="Refuse cookies">
+        <div class="tracking">
+          <i class="fad fa-user-secret"></i>
+          <span class="textWithMargin">Alice doesn't track you or access/keep/share/sell any of your data, with us your privacy is safe.</span>
+          <i class="fad fa-user-secret"></i>
+        </div>
+        <div class="noCookies" @click="refuseCookies" title="Refuse cookies. We'll add one cookie to remember this though!">
           <span class="fa-stack fa-lg">
             <i class="fad fa-wheat fa-stack-1x"></i>
             <i class="fal fa-ban fa-stack-2x"></i>

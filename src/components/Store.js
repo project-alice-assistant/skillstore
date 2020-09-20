@@ -14,11 +14,12 @@ export default {
 			showCookiesWarning: true,
 			cookiesRefused: false,
 			cookiesAccepted: false,
-			connectPanelHidden: false,
+			showConnectPanel: false,
 			userToken: '',
 			ip: '',
 			username: '',
-			pin: ''
+			pin: '',
+			connectIcon: 'fad fa-wifi-slash fa-fw fa-2x'
 		}
 	},
 	methods: {
@@ -136,36 +137,62 @@ export default {
 			this.cookieIcon = 'fad fa-cookie-bite fa-lg';
 			this.showCookiesWarning = false;
 			this.cookiesAccepted = true;
-			this.$cookies.set('visited', true);
+			this.cookiesRefused = false;
+			this.$cookies.set('cookiesAccepted', true);
 		},
 		refuseCookies() {
 			this.showCookiesWarning = false;
-			this.cookiesRefused = false;
+			this.cookiesAccepted = false;
+			this.cookiesRefused = true;
+			this.$cookies.set('cookiesRefused', true);
 		},
 		connect() {
-			let self = this
+			let self = this;
+			self.showConnectPanel = false;
 			fetch(`http://${this.ip}:5000/api/v1.0.1/login/`, {
 				method: 'POST',
 				cache: 'no-store',
 				body: JSON.stringify({
-					'username': this.username,
-					'pin': this.pin
+					'username': self.username,
+					'pin': self.pin
 				})
 			}).then(response => response.json())
 			.then(function(data) {
 				if ('apiToken' in data) {
 					self.userToken = data.apiToken;
+					self.connectIcon = 'fad fa-wifi fa-2x fa-fw';
+					if (self.cookiesAccepted) {
+						self.$cookies.set('ip', self.ip);
+						self.$cookies.set('username', self.username);
+					}
+				} else {
+					self.connectIcon = 'fad fa-wifi-slash fa-2x fa-fw red';
+					self.$cookies.remove('username')
+					self.$cookies.remove('ip')
+				}
+			}).catch(function() {
+				self.connectIcon = 'fad fa-wifi-slash fa-2x fa-fw red';
+				if (self.cookiesAccepted) {
+					self.$cookies.remove('username')
+					self.$cookies.remove('ip')
 				}
 			});
 		}
 	},
 	beforeMount() {
-		if (this.$cookies.get('visited')) {
+		if (this.$cookies.get('cookiesAccepted')) {
 			this.showCookiesWarning = false;
 			this.cookiesAccepted = true;
+			this.cookiesRefused = false;
 			this.orderBy = this.$cookies.get('orderBy') ? this.$cookies.get('orderBy') : 'name';
 			this.sortDirection = this.$cookies.get('sortDirection') ? this.$cookies.get('sortDirection') : 'asc';
 			this.skillFilter = this.$cookies.get('skillFilter') ? this.$cookies.get('skillFilter') : '';
+			this.ip = this.$cookies.get('ip') ? this.$cookies.get('ip') : '';
+			this.username = this.$cookies.get('username') ? this.$cookies.get('username') : '';
+		} else if (this.$cookies.get('cookiesRefused')) {
+			this.showCookiesWarning = false;
+			this.cookiesAccepted = false;
+			this.cookiesRefused = true;
 		}
 		this.getStoreData();
 	}
