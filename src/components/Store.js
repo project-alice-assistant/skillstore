@@ -13,7 +13,12 @@ export default {
 			cookieIcon: 'fad fa-cookie fa-lg',
 			showCookiesWarning: true,
 			cookiesRefused: false,
-			cookiesAccepted: false
+			cookiesAccepted: false,
+			connectPanelHidden: false,
+			userToken: '',
+			ip: '',
+			username: '',
+			pin: ''
 		}
 	},
 	methods: {
@@ -136,6 +141,22 @@ export default {
 		refuseCookies() {
 			this.showCookiesWarning = false;
 			this.cookiesRefused = false;
+		},
+		connect() {
+			let self = this
+			fetch(`http://${this.ip}:5000/api/v1.0.1/login/`, {
+				method: 'POST',
+				cache: 'no-store',
+				body: JSON.stringify({
+					'username': this.username,
+					'pin': this.pin
+				})
+			}).then(response => response.json())
+			.then(function(data) {
+				if ('apiToken' in data) {
+					self.userToken = data.apiToken;
+				}
+			});
 		}
 	},
 	beforeMount() {

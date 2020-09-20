@@ -1,11 +1,20 @@
 <template>
   <div id="Store">
+    <div class="connectInfo" v-show="connectPanelHidden">
+      <input v-model="ip" type="text" placeholder="Alice' ip address">
+      <input v-model="username" type="text" placeholder="Username">
+      <input v-model="pin" type="password" placeholder="Pin code">
+      <input type="button" value="Connect" @click="connect">
+    </div>
     <header>
       <div class="title">
         Project Alice skill store
       </div>
       <div class="description">
         For every task there's a skill and if not, we can make it
+      </div>
+      <div class="connector" title="Connect to Alice" @click="connectPanelHidden = ! connectPanelHidden">
+        <i class="fad fa-plug fa-2x"></i>
       </div>
       <div class="optionsContainer">
         <select id="orderBy" name="orderBy" @change="changeOrder($event.target.value)" v-bind:value="orderBy">
