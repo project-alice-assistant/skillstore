@@ -125,6 +125,9 @@ li:hover {
 	color: var(--hover);
 	cursor: pointer;
 }
+.acceptCookies:hover {
+	text-decoration: underline;
+}
 .button {
 	margin-bottom: 25px;
 	cursor: pointer;
@@ -241,11 +244,14 @@ li:hover {
 	margin: 0 10px 0 10px;
 }
 
+.acceptCookies {
+	color: var(--hover);
+}
+
 .noCookies {
 	position: fixed;
 	right: 50px;
 	bottom: 22px;
-	cursor: pointer;
 }
 
 .fade-enter-active,
