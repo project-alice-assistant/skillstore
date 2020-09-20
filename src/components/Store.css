@@ -169,8 +169,8 @@ li:hover {
 }
 .tools {
 	position: absolute;
-	top: 0px;
-	right: 0px;
+	top: 0;
+	right: 0;
 	font-size: 1em;
 	display: flex;
 	flex-direction: row;
