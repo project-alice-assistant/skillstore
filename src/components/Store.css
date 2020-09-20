@@ -115,12 +115,19 @@ li:hover {
 .skillAuthor:hover {
 	text-decoration: underline;
 }
-.skillDownloads {
+.skillDownload, .skillConnectToDownload {
 	width: 50%;
 	text-align: right;
+	font-family: var(--readable);
+	font-size: 0.75em;
 }
-.skillDownloads:hover {
-	text-decoration: underline;
+.skillDownload:hover, .skillConnectToDownload:hover, .button:hover, .connector:hover, .acceptCookies:hover, .noCookies:hover, .menuLink:hover {
+	color: var(--hover);
+	cursor: pointer;
+}
+.button {
+	margin-bottom: 25px;
+	cursor: pointer;
 }
 .skillIcon {
 	width: 100%;
@@ -161,9 +168,6 @@ li:hover {
 	cursor: pointer;
 	padding: 10px;
 }
-.connector:hover {
-	color: var(--hover);
-}
 .menu {
 	cursor: pointer;
 	padding: 10px;
@@ -186,9 +190,6 @@ li:hover {
 	display: flex;
 	justify-content: right;
 	margin-bottom: 15px;
-}
-.menuLink:hover {
-	color: yellow;
 }
 
 .optionsContainer {
@@ -240,20 +241,11 @@ li:hover {
 	margin: 0 10px 0 10px;
 }
 
-.acceptCookies {
-	color: var(--hover);
-	cursor: pointer;
-}
-
 .noCookies {
 	position: fixed;
 	right: 50px;
 	bottom: 22px;
 	cursor: pointer;
-}
-
-.noCookies:hover {
-	color: var(--hover);
 }
 
 .fade-enter-active,

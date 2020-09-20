@@ -19,7 +19,10 @@ export default {
 			ip: '',
 			username: '',
 			pin: '',
-			connectIcon: 'fad fa-wifi-slash fa-fw fa-2x'
+			connectIcon: 'fad fa-wifi-slash fa-fw fa-2x',
+			connecting: false,
+			connectingFailed: false,
+			connected: false
 		}
 	},
 	methods: {
@@ -115,16 +118,19 @@ export default {
 
 			this.listSkills();
 		},
-		downloadsLinkClicked(number)  {
-			this.orderBy = 'downloads';
-			this.skillFilter = number;
-
-			if (this.cookiesAccepted) {
-				this.$cookies.set('orderBy', 'downloads');
-				this.$cookies.set('skillFilter', this.skillFilter);
-			}
-
-			this.listSkills();
+		downloadLinkClicked(skillName)  {
+			console.log(`Requested skill download ${skillName}. This feature is coming soon!`)
+			// fetch(`http://${this.ip}:5000/api/v1.0.1/skills/${skillName}/`, {
+			// 	method: 'POST',
+			// 	cache: 'no-store',
+			// 	header: {
+			// 		'auth': this.userToken
+			// 	}
+			// }).then(response => response.json())
+			// 	.then(response => response.json)
+			// 	.then(function(data) {
+			// 		console.log(data);
+			// 	});
 		},
 		setFilter(input) {
 			this.skillFilter = input.toLowerCase();
@@ -148,7 +154,8 @@ export default {
 		},
 		connect() {
 			let self = this;
-			self.showConnectPanel = false;
+			this.connecting = true;
+			this.connectingFailed = false;
 			fetch(`http://${this.ip}:5000/api/v1.0.1/login/`, {
 				method: 'POST',
 				cache: 'no-store',
@@ -161,21 +168,38 @@ export default {
 				if ('apiToken' in data) {
 					self.userToken = data.apiToken;
 					self.connectIcon = 'fad fa-wifi fa-2x fa-fw';
+					self.connected = true;
+					self.connectingFailed = false;
 					if (self.cookiesAccepted) {
 						self.$cookies.set('ip', self.ip);
 						self.$cookies.set('username', self.username);
 					}
 				} else {
 					self.connectIcon = 'fad fa-wifi-slash fa-2x fa-fw red';
+					self.connected = false;
+					self.connectingFailed = true;
 					self.$cookies.remove('username')
 					self.$cookies.remove('ip')
 				}
+				setTimeout(() => {
+					self.showConnectPanel = false;
+				}, 750);
 			}).catch(function() {
 				self.connectIcon = 'fad fa-wifi-slash fa-2x fa-fw red';
+				self.connected = false;
+				self.connectingFailed = true;
 				if (self.cookiesAccepted) {
 					self.$cookies.remove('username')
 					self.$cookies.remove('ip')
 				}
+			}).finally(function() {
+				self.connecting = false;
+				setTimeout(() => {
+					if (self.connected) {
+						self.showConnectPanel = false
+					}
+					self.connectingFailed = false;
+				}, 1500);
 			});
 		}
 	},

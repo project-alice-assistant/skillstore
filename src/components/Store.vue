@@ -1,10 +1,14 @@
 <template>
   <div id="Store">
     <div class="connectInfo" v-show="showConnectPanel">
-      <input v-bind:value="ip" type="text" placeholder="Alice' ip address">
-      <input v-bind:value="username" type="text" placeholder="Username">
-      <input v-bind:value="pin" type="password" placeholder="Pin code">
-      <input type="button" value="Connect" @click="connect">
+      <i class="fad fa-times fa-4x button" @click="showConnectPanel = false"></i>
+      <input v-model="ip" type="text" placeholder="Alice' ip address" v-show="!connected">
+      <input v-model="username" type="text" placeholder="Username" v-show="!connected">
+      <input v-model="pin" type="password" placeholder="Pin code" v-show="!connected">
+      <input type="button" value="Connect" @click="connect" v-show="!connecting && !connected && !connectingFailed">
+      <i class="fad fa-spinner-third fa-spin fa-2x" v-show="connecting"></i>
+      <i class="fad fa-link fa-4x" v-show="connected"></i>
+      <i class="fad fa-wifi-slash fa-2x" v-show="connectingFailed"></i>
     </div>
     <header>
       <div class="title">
@@ -63,8 +67,11 @@
                   <div class="skillAuthor" @click="authorLinkClicked(skill.author)">
                     <i class="fad fa-at"></i> {{ skill.author }}
                   </div>
-                  <div class="skillDownloads" @click="downloadsLinkClicked(skill.downloads)">
-                    <i class="fad fa-cloud-download"></i> {{ skill.downloads }}
+                  <div class="skillDownload" @click="downloadLinkClicked(skill.name)" v-show="connected">
+                    <i class="fad fa-cloud-download fa-lg"></i>
+                  </div>
+                  <div class="skillConnectToDownload" @click="showConnectPanel = !showConnectPanel" v-show="!connected">
+                    Connect to download
                   </div>
                 </div>
               </div>
