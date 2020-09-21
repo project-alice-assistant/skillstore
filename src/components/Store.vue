@@ -30,7 +30,7 @@
           <option value="asc" selected>A-Z</option>
           <option value="desc">Z-A</option>
         </select>
-        <input type="text" name="filterSkill" id="filterSkill" placeholder="Search..." @input="setFilter($event.target.value)" v-bind:value="skillFilter">
+        <input type="text" name="filterSkill" id="filterSkill" :placeholder="orderBy === 'name' ? 'Filter by name...' : 'Filter by author...'" @input="setFilter($event.target.value)" v-bind:value="skillFilter">
       </div>
       <div class="tools">
         <div class="connector" title="Connect to Alice" @click="showConnectPanel = !showConnectPanel">
