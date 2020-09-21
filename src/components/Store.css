@@ -89,6 +89,7 @@ li:hover {
 	position: absolute;
 	width: 100%;
 	height: 225px;
+	transform: rotateX(0deg);
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	padding-left: 15px;
