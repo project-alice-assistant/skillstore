@@ -130,11 +130,11 @@ li:hover {
 	font-family: var(--readable);
 	font-size: 0.75em;
 }
-.skillDownload:hover, .skillConnectToDownload:hover, .button:hover, .connector:hover, .acceptCookies:hover, .noCookies:hover, .menuLink:hover {
+.skillDownload:hover, .skillConnectToDownload:hover, .button:hover, .connector:hover, .hover:hover, .noCookies:hover, .menuLink:hover, a {
 	color: var(--hover);
 	cursor: pointer;
 }
-.acceptCookies:hover {
+.hover:hover {
 	text-decoration: underline;
 }
 .button {
@@ -253,7 +253,7 @@ li:hover {
 	margin: 0 10px 0 10px;
 }
 
-.acceptCookies {
+.hover {
 	color: var(--hover);
 }
 

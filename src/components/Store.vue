@@ -1,7 +1,7 @@
 <template>
   <div id="Store">
     <div class="connectInfo" v-show="showConnectPanel">
-      <span class="apiInstructions" v-show="!connected">For now we use REST api calls to Alice. As your Alice instance is not running on https, it is considered insecure and you need to enable Mixed Content for this website. Follow the steps for you browser: <a href="https://docs.adobe.com/content/help/en/target/using/experiences/vec/troubleshoot-composer/mixed-content.html">How-to</a></span>
+      <span class="apiInstructions" v-show="!connected">For now we use REST api calls to Alice. As your Alice instance is not running on https, it is considered insecure and you need to enable Mixed Content for this website. Follow these steps for you browser: <a href="https://docs.adobe.com/content/help/en/target/using/experiences/vec/troubleshoot-composer/mixed-content.html">Show me how</a></span>
       <i class="fad fa-times fa-4x button" @click="showConnectPanel = false" v-show="!connected"></i>
       <span v-show="connected">Connected</span>
       <form @submit="connect" method="post" class="connectForm">
@@ -74,7 +74,7 @@
                   <div class="skillDownload" @click="downloadLinkClicked(skill.name)" v-show="connected">
                     <i class="fad fa-cloud-download fa-2x" :id="`downloadIcon_${skill.name}`"></i>
                   </div>
-                  <div class="skillConnectToDownload" @click="showConnectPanel = !showConnectPanel" v-show="!connected">
+                  <div class="skillConnectToDownload hover" @click="showConnectPanel = !showConnectPanel" v-show="!connected">
                     Connect to download
                   </div>
                 </div>
@@ -88,7 +88,7 @@
       <div class="footer" v-show="showCookiesWarning">
         <div class="cookies">
           <i :class="cookieIcon"></i>
-          <span class="textWithMargin">We do not use cookies but we can, if you wish so, to make your experience better. <span class="acceptCookies" @click="acceptCookies" title="Accept cookies">Yummi!</span></span>
+          <span class="textWithMargin">We do not use cookies but we can, if you wish so, to make your experience better. <span class="hover" @click="acceptCookies" title="Accept cookies">Yummi!</span></span>
           <i :class="cookieIcon"></i>
         </div>
         <div class="tracking">
