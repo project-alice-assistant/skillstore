@@ -16,22 +16,22 @@ export default {
 			cookiesAccepted: false,
 			showConnectPanel: false,
 			userToken: '',
-			ip: '',
-			username: '',
-			pin: '',
 			connectIcon: 'fad fa-wifi-slash fa-fw fa-2x',
 			connecting: false,
 			connectingFailed: false,
-			connected: false
+			connected: false,
+			ip: '',
+			username: '',
+			pin: '',
+			installedSkills: []
 		}
 	},
 	methods: {
 		getStoreData() {
 			let self = this;
-			fetch('https://skills.projectalice.io/assets/store/master.json')
-				.then(response => response.json())
-				.then(function(data) {
-					storeSkills = Object.values(data);
+			this.axios.get('https://skills.projectalice.io/assets/store/master.json')
+				.then(function(response) {
+					storeSkills = Object.values(response.data);
 					self.listSkills();
 				});
 		},
@@ -118,19 +118,22 @@ export default {
 
 			this.listSkills();
 		},
-		downloadLinkClicked(skillName)  {
-			console.log(`Requested skill download ${skillName}. This feature is coming soon!`)
-			// fetch(`http://${this.ip}:5000/api/v1.0.1/skills/${skillName}/`, {
-			// 	method: 'POST',
-			// 	cache: 'no-store',
-			// 	header: {
-			// 		'auth': this.userToken
-			// 	}
-			// }).then(response => response.json())
-			// 	.then(response => response.json)
-			// 	.then(function(data) {
-			// 		console.log(data);
-			// 	});
+		downloadLinkClicked(skillName) {
+			if (skillName in this.installedSkills) {
+				return;
+			}
+			let self = this;
+			this.axios.put(`http://${this.ip}:5000/api/v1.0.1/skills/${skillName}/`)
+				.then(function(response) {
+					const icon = document.getElementById(`downloadIcon_${skillName}`);
+					icon.classList.remove('fa-cloud-download');
+					if (response.data.success || response.data.reason === 'skill already installed') {
+						icon.classList.add('fa-check');
+						self.installedSkills.push(skillName);
+					} else {
+						icon.classList.add('fa-exclamation');
+					}
+				});
 		},
 		setFilter(input) {
 			this.skillFilter = input.toLowerCase();
@@ -152,28 +155,44 @@ export default {
 			this.cookiesRefused = true;
 			this.$cookies.set('cookiesRefused', true);
 		},
-		connect() {
+		connect(e) {
+			e.preventDefault();
+
 			let self = this;
 			this.connecting = true;
 			this.connectingFailed = false;
-			fetch(`http://${this.ip}:5000/api/v1.0.1/login/`, {
-				method: 'POST',
-				cache: 'no-store',
-				body: JSON.stringify({
-					'username': self.username,
-					'pin': self.pin
-				})
-			}).then(response => response.json())
-			.then(function(data) {
-				if ('apiToken' in data) {
-					self.userToken = data.apiToken;
+			this.connected = false;
+			const formData = new FormData();
+			formData.append('username', this.username);
+			formData.append('pin', this.pin);
+			this.axios.post(`http://${self.ip}:5000/api/v1.0.1/login/`, formData)
+			.then(function(response) {
+				if ('apiToken' in response.data) {
+					self.userToken = response.data.apiToken;
 					self.connectIcon = 'fad fa-wifi fa-2x fa-fw';
 					self.connected = true;
 					self.connectingFailed = false;
+					self.axios.defaults.headers.common['auth'] = self.userToken;
 					if (self.cookiesAccepted) {
 						self.$cookies.set('ip', self.ip);
 						self.$cookies.set('username', self.username);
 					}
+
+					self.axios.get(`http://${self.ip}:5000/api/v1.0.1/skills/`)
+						.then(function(response){
+							for(const skill of response.data['data']) {
+								self.installedSkills.push(skill['name']);
+								const icon = document.getElementById(`downloadIcon_${skill['name']}`);
+								if (icon) {
+									icon.classList.remove('fa-cloud-download');
+									icon.classList.add('fa-check');
+								}
+							}
+						});
+
+					setTimeout(() => {
+						self.showConnectPanel = false;
+					}, 750);
 				} else {
 					self.connectIcon = 'fad fa-wifi-slash fa-2x fa-fw red';
 					self.connected = false;
@@ -181,10 +200,8 @@ export default {
 					self.$cookies.remove('username')
 					self.$cookies.remove('ip')
 				}
-				setTimeout(() => {
-					self.showConnectPanel = false;
-				}, 750);
-			}).catch(function() {
+			}).catch(function(e) {
+				console.warn(e);
 				self.connectIcon = 'fad fa-wifi-slash fa-2x fa-fw red';
 				self.connected = false;
 				self.connectingFailed = true;
@@ -204,6 +221,7 @@ export default {
 		}
 	},
 	beforeMount() {
+		delete this.axios.defaults.headers.common['auth'];
 		if (this.$cookies.get('cookiesAccepted')) {
 			this.showCookiesWarning = false;
 			this.cookiesAccepted = true;

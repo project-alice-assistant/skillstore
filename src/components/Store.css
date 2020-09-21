@@ -13,8 +13,16 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background-color: rgba(0, 0, 0, 0.95);
+	background-color: rgba(0, 0, 0, 0.85);
 	z-index: 100;
+	display: flex;
+	justify-items: center;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.connectForm {
 	display: flex;
 	justify-items: center;
 	justify-content: center;
@@ -162,8 +170,8 @@ li:hover {
 }
 .tools {
 	position: absolute;
-	top: 0px;
-	right: 0px;
+	top: 0;
+	right: 0;
 	font-size: 1em;
 	display: flex;
 	flex-direction: row;
@@ -267,4 +275,11 @@ li:hover {
 
 .red {
 	color: red;
+}
+
+.apiInstructions {
+	font-family: var(--readable);
+	margin-bottom: 100px;
+	width: 30%;
+	text-align: center;
 }
