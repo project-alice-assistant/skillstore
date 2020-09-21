@@ -1,6 +1,7 @@
 <template>
   <div id="Store">
     <div class="connectInfo" v-show="showConnectPanel">
+      <span class="apiInstructions">For now we use REST api calls to Alice. As your Alice instance is not running on https, it is considered insecure and you need to enable Mixed Content for this website. Follow the steps for you browser: <a href="https://docs.adobe.com/content/help/en/target/using/experiences/vec/troubleshoot-composer/mixed-content.html">How-to</a></span>
       <i class="fad fa-times fa-4x button" @click="showConnectPanel = false" v-show="!connected"></i>
       <span v-show="connected">Connected</span>
       <form @submit="connect" method="post" class="connectForm">
