@@ -22,7 +22,8 @@ export default {
 			connected: false,
 			ip: '',
 			username: '',
-			pin: ''
+			pin: '',
+			installedSkills: []
 		}
 	},
 	methods: {
@@ -118,12 +119,17 @@ export default {
 			this.listSkills();
 		},
 		downloadLinkClicked(skillName) {
+			if (skillName in this.installedSkills) {
+				return;
+			}
+			let self = this;
 			this.axios.put(`http://${this.ip}:5000/api/v1.0.1/skills/${skillName}/`)
 				.then(function(response) {
 					const icon = document.getElementById(`downloadIcon_${skillName}`);
 					icon.classList.remove('fa-cloud-download');
 					if (response.data.success || response.data.reason === 'skill already installed') {
 						icon.classList.add('fa-check');
+						self.installedSkills.push(skillName);
 					} else {
 						icon.classList.add('fa-exclamation');
 					}
@@ -171,6 +177,19 @@ export default {
 						self.$cookies.set('ip', self.ip);
 						self.$cookies.set('username', self.username);
 					}
+
+					self.axios.get(`http://${self.ip}:5000/api/v1.0.1/skills/`)
+						.then(function(response){
+							for(const skill of response.data['data']) {
+								self.installedSkills.push(skill['name']);
+								const icon = document.getElementById(`downloadIcon_${skill['name']}`);
+								if (icon) {
+									icon.classList.remove('fa-cloud-download');
+									icon.classList.add('fa-check');
+								}
+							}
+						});
+
 					setTimeout(() => {
 						self.showConnectPanel = false;
 					}, 750);
@@ -181,7 +200,8 @@ export default {
 					self.$cookies.remove('username')
 					self.$cookies.remove('ip')
 				}
-			}).catch(function() {
+			}).catch(function(e) {
+				console.warn(e);
 				self.connectIcon = 'fad fa-wifi-slash fa-2x fa-fw red';
 				self.connected = false;
 				self.connectingFailed = true;
@@ -201,6 +221,7 @@ export default {
 		}
 	},
 	beforeMount() {
+		delete this.axios.defaults.headers.common['auth'];
 		if (this.$cookies.get('cookiesAccepted')) {
 			this.showCookiesWarning = false;
 			this.cookiesAccepted = true;
