@@ -29,7 +29,7 @@ export default {
 	methods: {
 		getStoreData() {
 			let self = this;
-			this.axios.get('https://skills.projectalice.io/assets/store/master.json')
+			this.axios.get('https://skills.projectalice.io/assets/store/skills.json')
 				.then(function(response) {
 					storeSkills = Object.values(response.data);
 					self.listSkills();
@@ -54,9 +54,9 @@ export default {
 			let skills = {};
 			filtered.forEach(function(skill) {
 				if (!(skill[self.orderBy] in skills)) {
-					skills[skill[self.orderBy].toString()] = [];
+					skills[skill[self.orderBy]] = [];
 				}
-				skills[skill[self.orderBy].toString()].push(skill);
+				skills[skill[self.orderBy]].push(skill);
 			});
 
 			let keys = this.sort(self, Object.keys(skills));
@@ -82,10 +82,17 @@ export default {
 			this.skills = ordered;
 		},
 		sort(self, list) {
+			// list.sort(function(a, b) {
+			// 	if (a.toLowerCase() < b.toLowerCase()) return -1;
+			// 	if (a.toLowerCase() > b.toLowerCase()) return 1;
+			// 	return 0;
+			// });
+
 			list.sort(function(a, b) {
-				if (a.toLowerCase() < b.toLowerCase()) return -1;
-				if (a.toLowerCase() > b.toLowerCase()) return 1;
-				return 0;
+				return a.localeCompare(b, undefined, {
+					numeric: self.orderBy === 'downloads',
+					sensitivity: 'base'
+				});
 			});
 
 			if (self.sortDirection === 'desc') {
@@ -104,6 +111,9 @@ export default {
 			this.orderBy = value.toLowerCase();
 			if (this.cookiesAccepted) {
 				this.$cookies.set('orderBy', this.orderBy);
+			}
+			if (this.orderBy === 'downloads') {
+				this.sortDirection = 'desc';
 			}
 			this.listSkills();
 		},

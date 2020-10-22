@@ -152,6 +152,16 @@ li:hover {
 	height: 125px;
 	background-color: var(--mainBG);
 }
+.downloadCounter {
+	position: relative;
+	top: -18px;
+	right: 5px;
+	width: 100%;
+	text-align: right;
+	font-size: 0.7em;
+	height: 10px;
+	background-color: var(--mainBG);
+}
 .skillName {
 	width: 100%;
 	text-align: center;

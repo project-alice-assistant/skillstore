@@ -25,6 +25,7 @@
         <select id="orderBy" name="orderBy" @change="changeOrder($event.target.value)" v-bind:value="orderBy">
           <option value="name" selected>Order by name</option>
           <option value="author">Order by author</option>
+          <option value="downloads">Order by downloads</option>
         </select>
         <select id="direction" name="direction" @change="changeSortingDirection($event.target.value)" v-bind:value="sortDirection">
           <option value="asc" selected>A-Z</option>
@@ -59,6 +60,9 @@
         <li v-for="skill in skills" :key="skill.name">
           <div class="skillIcon">
             <i :class="skill.icon"></i>
+          </div>
+          <div class="downloadCounter">
+            <i class="far fa-cloud-download-alt"></i> {{ skill.downloads }}
           </div>
           <div class="skillInfos">
             <div class="skillInfosInner">
